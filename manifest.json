@@ -4,12 +4,6 @@
   "version": "0.1",
   "manifest_version": 3,
   "permissions": ["activeTab", "scripting"],
-  "content_scripts": [
-    {
-      "matches": ["https://platzi.com/clases/*"],
-      "js": ["js/contentScript.js"]
-    }
-  ],
   "action": {
     "default_popup": "html/popup.html",
     "default_icon": {

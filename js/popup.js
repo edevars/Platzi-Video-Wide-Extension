@@ -11,14 +11,25 @@ wideButton.addEventListener("click", async () => {
 
 
 function setWidth() {
-    let container = document.getElementsByClassName('Live-primary');
-    container[0].style.width = "auto"
+    let container = document.querySelector('.MaterialView');
+    container.style.height = "auto"
+    container.style.gridTemplateAreas = '"video" "content" "community"'
+    container.style.gridTemplateColumns = '1fr'
+    container.style.maxHeight = "none"
+    container.style.maxWidth = "1080px"
 
-    let videoBackGround = document.getElementsByClassName('Live VideoMaterialLayout-background')
-    videoBackGround[0].style.display = "flex"
-    videoBackGround[0].style.flexDirection = "column"
+    let videoWrapper = document.querySelector('.MaterialView-video')
+    videoWrapper.style.maxHeight = 'none';
+    videoWrapper.style.height = 'auto';
+    videoWrapper.style.overflowY = 'inherit';
 
-    let comments = document.getElementsByClassName('Live-chat-content')
-    comments[0].style.margin = "0px 40px"
-    comments[0].style.width = "auto"
+    let community = document.querySelector('.MaterialView-community')
+    community.style.maxHeight = 'none';
+    community.style.height = 'auto';
+    community.style.overflowY = 'inherit';
+
+    let communityWrapper = document.querySelector('.MaterialView-community-wrapper');
+    communityWrapper.style.maxHeight = 'none';
+    communityWrapper.style.height = 'auto';
+    communityWrapper.style.overflowY = 'inherit';
 }
