@@ -1,9 +1,12 @@
 {
   "name": "Platzi Video Wide Extension",
   "description": "Mueve la barra de materiales y comentarios hacia abajo para que tengas mayor campo de visión del video.",
-  "version": "0.1",
+  "version": "0.2",
   "manifest_version": 3,
-  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage","activeTab", "scripting"],
   "action": {
     "default_popup": "html/popup.html",
     "default_icon": {

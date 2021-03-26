@@ -1,16 +1,25 @@
-let wideButton = document.getElementById("wide");
+let switchButton = document.getElementById("switch");
 
-wideButton.addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+chrome.storage.sync.get("state", ({ state }) => {
+    let slider = document.querySelector('.slider')
+    if (state) {
+        slider.classList.add('activeSlider')
+    } else {
+        slider.classList.remove('activeSlider')
+    }
 
-    chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: setWidth,
-    });
 });
 
+// wideButton.addEventListener("click", async () => {
+//     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-function setWidth() {
+//     chrome.scripting.executeScript({
+//         target: { tabId: tab.id },
+//         function: setLayout,
+//     });
+// });
+
+function setLayout() {
     let container = document.querySelector('.MaterialView');
     container.style.height = "auto"
     container.style.gridTemplateAreas = '"video" "content" "community"'
