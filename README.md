@@ -1,4 +1,4 @@
-# Platzi Video Wide Extension
+# Platzi Full Mode Extension
 
 An extension developed in HTML, CSS and JavaScript for Google Chrome. This extension let yopu to alarge the size of the video section keeping the comments and resources section at the bottom. 
 
