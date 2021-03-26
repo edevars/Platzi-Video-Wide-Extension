@@ -3,6 +3,12 @@
   "description": "Mueve la barra de materiales y comentarios hacia abajo para que tengas mayor campo de visión del video.",
   "version": "0.4",
   "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["https://platzi.com/clases/*"],
+      "js": ["js/contentScript.js"]
+    }
+  ],
   "background": {
     "service_worker": "background.js"
   },
