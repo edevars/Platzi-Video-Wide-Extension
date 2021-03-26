@@ -12,7 +12,7 @@ function setLayout() {
     container.style.gridTemplateAreas = '"video" "content" "community"'
     container.style.gridTemplateColumns = '1fr'
     container.style.maxHeight = "none"
-    container.style.maxWidth = "1080px"
+    container.style.maxWidth = "100%"
 
     let videoWrapper = document.querySelector('.MaterialView-video')
     videoWrapper.style.maxHeight = 'none';
