@@ -1,6 +1,16 @@
 let switchButton = document.getElementById("switch");
 let slider = document.querySelector('.slider')
 
+chrome.storage.sync.get("state", ({ state }) => {
+    if (state) {
+        switchButton.classList.add('activeSwitch')
+        slider.classList.add('activeSlider')
+    } else {
+        switchButton.classList.remove('activeSwitch')
+        slider.classList.remove('activeSlider')
+    }
+});
+
 switchButton.addEventListener("click", async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
