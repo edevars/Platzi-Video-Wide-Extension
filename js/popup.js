@@ -1,23 +1,30 @@
 let switchButton = document.getElementById("switch");
+let slider = document.querySelector('.slider')
 
-chrome.storage.sync.get("state", ({ state }) => {
-    let slider = document.querySelector('.slider')
-    if (state) {
-        slider.classList.add('activeSlider')
-    } else {
-        slider.classList.remove('activeSlider')
-    }
+switchButton.addEventListener("click", async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-});
-
-// wideButton.addEventListener("click", async () => {
-//     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-//     chrome.scripting.executeScript({
-//         target: { tabId: tab.id },
-//         function: setLayout,
-//     });
-// });
+    chrome.storage.sync.get("state", ({ state }) => {
+        if (state) {
+            switchButton.classList.remove('activeSwitch')
+            slider.classList.remove('activeSlider')
+            chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                function: removeLayout,
+            });
+        } else {
+            switchButton.classList.add('activeSwitch')
+            slider.classList.add('activeSlider')
+            chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                function: setLayout,
+            });
+        }
+        let newState = !state;
+        chrome.storage.sync.set({ state: newState });
+    });
+}
+)
 
 function setLayout() {
     let container = document.querySelector('.MaterialView');
@@ -41,4 +48,27 @@ function setLayout() {
     communityWrapper.style.maxHeight = 'none';
     communityWrapper.style.height = 'auto';
     communityWrapper.style.overflowY = 'inherit';
+}
+
+function removeLayout() {
+    let container = document.querySelector('.MaterialView');
+    container.style.gridTemplateAreas = '"video community" "content community"'
+    container.style.gridTemplateColumns = '65% 35%'
+    container.style.maxHeight = "calc(100vh - 52px)"
+    container.style.maxWidth = "1440px"
+
+    let videoWrapper = document.querySelector('.MaterialView-video')
+    videoWrapper.style.maxHeight = 'calc(100vh - 52px)';
+    videoWrapper.style.height = 'inherit';
+    videoWrapper.style.overflowY = 'scroll';
+
+    let community = document.querySelector('.MaterialView-community')
+    community.style.maxHeight = 'calc(100vh - 52px)';
+    community.style.height = 'inherit';
+    community.style.overflowY = 'visible';
+
+    let communityWrapper = document.querySelector('.MaterialView-community-wrapper');
+    communityWrapper.style.maxHeight = 'calc(100vh - 52px)';
+    communityWrapper.style.height = 'inherit';
+    communityWrapper.style.overflowY = 'scroll';
 }
