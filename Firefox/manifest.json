@@ -26,5 +26,12 @@
       "matches": ["https://platzi.com/clases/*"],
       "js": ["content_script.js"]
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "platzifullvideo@edevars.com",
+      "strict_min_version": "48.0"
+    }
+  }
+  
 }
