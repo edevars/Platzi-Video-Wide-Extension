@@ -1,7 +1,7 @@
 {
   "name": "Platzi Full Mode",
   "description": "Mueve la barra de aportes para que tengas mayor campo de visión del video.",
-  "version": "0.4",
+  "version": "0.5",
   "manifest_version": 3,
   "content_scripts": [
     {
